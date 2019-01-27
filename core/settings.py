@@ -1,6 +1,7 @@
 from conf.db.db_interface import DBConnect
 import os
 from dotenv import load_dotenv
+import logging
 load_dotenv()
 
 """
@@ -23,3 +24,9 @@ DB_INTERFACE = DBConnect(DB_CONFIG)
 Sessao do Bot
 """
 TELEGRAM_TOKEN = os.getenv("TELEGRAMBOT_KEY")
+"""
+Sessao de Logs
+"""
+
+logging.basicConfig(filename='bot.log', level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(funcName)s => %(message)s')
