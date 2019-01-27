@@ -16,6 +16,7 @@ class Conexao(object):
         except ValueError as e:
             print(e)
 
+    #Metodo para fechar conexao do objeto com banco
     def close(self):
         self.cursor.close()
         print("Conexão fechada!")
