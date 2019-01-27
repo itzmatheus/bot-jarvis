@@ -17,9 +17,6 @@ class Bot(object):
             CommandHandler('start', self.start)
         )
         dispatcher.add_handler(
-            CommandHandler('hello', self.hello)
-        )
-        dispatcher.add_handler(
             MessageHandler(Filters.command, self.unknown)
         )
 
@@ -39,18 +36,11 @@ class Bot(object):
         bot.send_message(
             chat_id=update.message.chat_id, text=response_message
         )
-
-    def hello(self, bot, update):
-        sql = "select * from dados.data"
-        dados = DB_INTERFACE.select(sql,dict)
-        response_message = dados
-        bot.send_message(
-            chat_id=update.message.chat_id, text=response_message
-        )
-
+        print(bot, update)
     def unknown(self, bot, update):
         response_message = "Desculpe-me, não entendi!"
         bot.send_message(
             chat_id=update.message.chat_id,
             text=response_message
         )
+        print(bot, update)
