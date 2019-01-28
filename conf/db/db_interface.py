@@ -23,8 +23,8 @@ class DBConnect(object):
         try:
             self._cursor.execute(sql)
             data = self._cursor
-        except:
-            return False
+        except ValueError as e:
+            return e
 
         if type == dict:
             _data = self._dictfetchall(self._cursor)
@@ -36,6 +36,11 @@ class DBConnect(object):
 
 
     def insert(self, sql, commit=False):
+        """
+        :param sql: SQL Query
+        :param commit: Realizar commit transacional
+        :return: True se for inserido, se houver algum erro retorna o erro
+        """
         try:
             self._cursor.execute(sql)
             if commit:
@@ -43,10 +48,10 @@ class DBConnect(object):
 
             self._cursor.close()
             return True
-        except:
+        except ValueError as e:
 
             self._cursor.close()
-            return False
+            return e
 
     '''
     Metodo para retornar dados no formato de dicionario
