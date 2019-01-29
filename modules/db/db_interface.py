@@ -1,5 +1,4 @@
-from modules.db.conexao import Conexao
-
+from projeto.modules.db.conexao import Conexao
 
 class DBConnect(object):
 

@@ -1,7 +1,9 @@
-from modules.db.db_interface import DBConnect
 import os
 from dotenv import load_dotenv
 import logging
+
+from projeto.modules.db.db_interface import DBConnect
+
 load_dotenv()
 
 """
@@ -30,3 +32,16 @@ Sessao de Logs
 
 logging.basicConfig(filename='bot.log', level=logging.DEBUG,
                     format='%(asctime)s %(levelname)s %(funcName)s => %(message)s')
+
+"""
+Sessao de email
+"""
+EMAIL_CONFIG = (
+    {
+        'email': os.getenv('BOT_EMAIL'),
+        'password': os.getenv('BOT_EMAIL_PASS'),
+        'smtp': os.getenv('EMAIL_SMTP'),
+        'port': os.getenv('EMAIL_SMTP_PORT')
+    }
+)
+print(EMAIL_CONFIG)

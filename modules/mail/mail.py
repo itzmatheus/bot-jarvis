@@ -5,13 +5,17 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from smtplib import SMTP
 
+from projeto.core.settings import EMAIL_CONFIG
+
 
 class Mail(object):
     _server: SMTP
 
-    def __init__(self, email: object, password: object, server: object, port: object) -> object:
-        self._server = self.connect(email, password, server, port)
-        self._from = email
+    def __init__(self, EMAIL_CONFIG: object):
+        self._server = self.connect(
+            email=EMAIL_CONFIG['email'], password=EMAIL_CONFIG['password'],
+            server=EMAIL_CONFIG['smtp'], port=EMAIL_CONFIG['port'])
+        self._from = EMAIL_CONFIG['email']
 
     def connect(self, email, password, server, port):
         self._server = smtplib.SMTP(server, port)
@@ -41,7 +45,7 @@ class Mail(object):
             _part = MIMEBase('application', 'octet-stream')
             _part.set_payload(_attachment.read())
             encoders.encode_base64(_part)
-            _part.add_header('Content-Disposition', "attachment; filename= %s ", _filepath)
+            _part.add_header('Content-Disposition', "attachment; filename= %s " % _filepath)
             _msg.attach(_part)
             _attachment.close()
 
