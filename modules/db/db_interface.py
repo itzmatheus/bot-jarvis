@@ -1,4 +1,4 @@
-from conf.db.conexao import Conexao
+from modules.db.conexao import Conexao
 
 
 class DBConnect(object):

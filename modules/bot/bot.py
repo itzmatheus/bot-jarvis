@@ -22,14 +22,12 @@ class Bot(object):
             CommandHandler('start', self.start)
         )
 
-        '''Mensagens Padroes'''
         dispatcher.add_handler(
             MessageHandler(Filters.text, self.echo)
         )
         dispatcher.add_handler(
             CommandHandler('echo', self.activate_echo)
         )
-        '''Comandos'''
         dispatcher.add_handler(
             MessageHandler(Filters.command, self.unknown)
         )

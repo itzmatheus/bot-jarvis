@@ -1,4 +1,4 @@
-from conf.db.db_interface import DBConnect
+from modules.db.db_interface import DBConnect
 import os
 from dotenv import load_dotenv
 import logging
